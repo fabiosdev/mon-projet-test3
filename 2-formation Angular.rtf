@@ -1,0 +1,148 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww18380\viewh8160\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b \cf0 CREER NOUVEAU PROJET :
+\b0 \
+\
+1 - Run terminal\
+2 - cd \'ab\'a0/users/JOB314/angular-projets/\'ab\'a0\
+3 - ng new nom-du-projet (cr\'e9e le nouveau dossier avec les imports angular CLI\
+    (on peut directement taper \'ab\'a0 ng new nom-du-projet \'97style=scss \'97skip-tests=true\'a0\'bb , afin de pr\'e9ciser le langage scss d\'e8s le d\'e9but et annuler la cr\'e9ation de fichiers test)\
+4 -npm install bootstrap@3.3.7 \'97save (installation de boostrap)\
+5 - npm install jquery@1.9.1 --save (installation de la version jquery requise par boottrap)\
+6 - npm install popper.js@^1.14.7 \'97save (installation de la version de popperjs requise par boostrap)\
+7 - dans angular.json : \'ab\'a0architect/buid/styles, lier le css bootstrap : \'ab\'a0node_modules/boostrap/dist/css/bootstrap.css\'a0\'bb\
+8 - ng serve (ou ng serve \'97open pour lancer le serveur et ouvrir directement le navigateur en localhost:4200/)\
+\
+\'97\'97\'97\'97\'97\'97\
+\
+
+\b MEMO Structure CLI :\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b0 \cf0 \
+A - Le dossier \'ab\'a0
+\b e2e
+\b0 \'a0\'bb est d\'e9di\'e9 aux tests \'ab\'a0end-to-end\'a0\'bb\
+B - Le dossier 
+\b node_modules
+\b0  : contient toutes les d\'e9pendances pour l\'92appi (fichiers sources angular et typescript)\
+C - src/app/
+\b appcomponent
+\b0  (html/scss/ts\'85) : component principal ou tous les autres components seront imbriqu\'e9s)\
+  \'95 app.components.ts : fichier typescript qui contient touts les components principaux\
+   (- on les d\'e9clare  : import \{ Component \} from \'91@angular/core\'92;)\
+   (- on cr\'e9e le \'ab\'a0d\'e9corateur\'a0\'bb du component en pr\'e9cisant le nom du s\'e9lecteur / le chemin d\'92acc\'e8s du fichier Html / le chemin d\'92acc\'e8s au style css.) comme ceci : \
+\
+		@Component (\{ \
+    			selector: \'ab\'92app-root\'92,\
+    			templateUrl: \'91./app.component.html\'92,\
+    			styleUrls: [\'91./app.component.scss\'92]\
+		  \}]\
+\
+*Le s\'e9lecteur \'91app-root\'92 est nomm\'e9 avec le pr\'e9fixe \'ab\'a0app\'a0\'bb pour se distinguer des s\'e9lecteurs html classiques.\
+\
+* G\'e9n\'e9ration d\'92un nouveau component, \
+   \'95 Se d\'e9connecter du serveur (^C ) \
+   \'95 ng generate component nom-du-component\
+   \'95 CLI cr\'e9e un dossier dans \'ab\'a0app\'a0\'bb (avec fichier li\'e9 html/scss/spec.ts/.ts)\
+   \'95 CLI met \'e0 jour  app.module.ts (import et @ngModule d\'e9claration)\
+\
+* Utilisation d\'92un nouveau component : \
+  \'95 cr\'e9er le s\'e9lecteur dans la page html (app.component.html) -> \'ab\'a0<app-nom-du-component></\
+\
+* la synthaxe pour les interpolations s\'92inscrit dans une double accolade \{\{ expressionTypescript \}\}\
+ (pour l\'92affichage d\'92une expression typescript dans une balise html (ex. title\'85ext)\
+ \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b \cf0 M\'e9thode d\'92utilisation : 
+\b0 \
+\
+* 1 - cr\'e9ation du nouveau component\
+  2 - Ouvrir le fichier html du component\
+  3 - taper le nom d\'92une variable entre double accolade \'e0 l\'92endroit souhait\'e9 dans ce fichier html\
+  4 - Ouvrir le fichier ts du component \
+  5 - dans \'ab\'a0export class \'ab\'a0nomDuComponent\'a0\'bb, au dessus du constructor, on d\'e9clare la variable que l\'92on vient d\'92appeler dans le fichier html : expressionTypescript : string = \'ab\'a0Message\'a0\'bb;\
+\
+* dans le fichier ts du component, on peut cr\'e9er n\'92importe quelle variable et la relier au fichier html\
+\
+*
+\b Property binding
+\b0  : Communication dynamique entre le ts et le template (pour modifier dynamiquement les propri\'e9t\'e9s d\'92un \'e9l\'e9ment DOM en fonctions des donn\'e9es ts)\
+* Pour lier une propri\'e9t\'e9 html au typescript, il faut la mettre en crochets [ ] (exemple ( <button [disabled]></button> )\
+\
+*
+\b Event binding
+\b0  : On peut rajouter un \'e9v\'e8nement (exemple un click event sur un bouton) => (click)=\'ab\'a0onAllumer()\'a0\'bb (les parenth\'e8ses \'ab\'a0()\'a0\'bb cr\'e9ent la liaison avec l\'92\'e9venement\
+ Ensuite dans le ts il faut cr\'e9er la variable \'ab\'a0onAllumer() \{\}\
+\
+
+\b *two-way binding
+\b0  : (liaison \'e0 double sens) => par propri\'e9t\'e9 et event en m\'eame temps. Pour cela, il faut importer FormsModule dans app.module.ts \
+ \'95 import \{ FormsModule \} from \'91@angular/forms\'92; en haut du fichier rajouter la variable FormsModule dans imports.\
+ \'95 Dans l\'92appel d\'92une variable en two-way-binding, la synthaxe m\'e9lange les crochets et les parenth\'e8ses comme ceci [()] exemple : \
+  <input type=\'ab\'a0text\'a0\'bb class=\'ab\'a0form-control\'bb [(ngModel)]=\'ab\'a0appareilName\'bb>\
+\
+
+\b *Les directives structurelles
+\b0  : modifient la structure du document (ex : *ngIf / *ngFor, pour it\'e9rer des donn\'e9es dans un array)\
+ \'95 exemple *ngIf=\'ab\'a0condittion\'a0\'bb : <div style=\'ab\'a0width:20px;height;20px;background-color:red;\'a0\'bb *ngIf=\'ab\'a0appareilStatus ===\'91\'e9teint\'92\'a0\'bb></div>\
+ \'95 exemple *ngFor : (1- on cr\'e9e les variables 2- on l\'92appelle avec cette synthaxe : *ngFor=\'ab\'a0let variable of variables\'a0\'bb, suvi du nom des variables d\'e9clar\'e9es dans le ts)\
+  (comme dans un for loop classique, it\'e8re pour chaque \'e9l\'e9ment \'ab\'a0variable\'a0\'bb de l\'92array \'ab\'a0variables\'a0\'bb.)\
+   \
+  <app-appareil *ngfor=\'ab\'a0let variable of variables\'a0\'bb [variableName]=\'ab\'a0variable.name\'a0[variableStatus]=\'ab\'a0variable.status\'a0\'bb></app-appareil>\
+\
+
+\b * Les directives par attribut :
+\b0  (style  / class\'85) => ngStyle / ngClass \'85\
+  Exemple : <h4 [ngStyle]=\'ab\{color:getColor()\'a0\}\'bb\
+\
+
+\b * Les pipes
+\b0  (modifier des donn\'e9es en temps r\'e9el => exemple, date format\'85) \
+\
+
+\b * Les services
+\b0  : Permettent de centraliser des parties de code et des donn\'e9es pour ne pas devoir les dupliquer plusieurs fois, faciliter la maintenance, la lisibilit\'e9 et stabilit\'e9, avoir un code plus fonctionnel et modulaire.\
+(comme par exemple des donn\'e9es sur des objets , ou des fonctions ..)\
+ On peut les injecter dans 3 niveaux diff\'e9rents : \
+\'95 Dans AppModule (si on veut que le service englobe toute l\'92application)\
+\'95 Dans AppComponent (si on veut que tous les components aient acc\'e8s au service)\
+\'95 Dans un autre component (si l\'92on ne veut ouvrir l\'92acc\'e8s \'e0 ce service qu\'92\'e0 un component sp\'e9cifique)\
+\
+
+\b 	UTILISATION D\'92UN SERVICE : M\'c9THODE 1 (simple) : \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b0 \cf0 \
+	1 - Se placer dans le dossier src/app\
+	2 - ng generate service nomDuService\
+	3 - Dans nomDuService.ts : export class => couper/ coller dedans la partie du code que l\'92on veut y relier\
+	4 - Dans app.module.ts : import \{ nomDuService \} from \'91@angular/core\'92;  + d\'e9clarer nomDuService dans l\'92array provider []\
+	5 - Dans app.component.ts : \
+	     \'95 Relier nomDuService au constructeur si n\'e9cessaire\
+	     \'95 import \{ nomDuService \} from \'91.service/variable.service\'92;\
+	     \'95 Rajouter OnInit dans import @angular/core tout en haut\
+	     \'95 implements OnInit dans export class\
+	     \'95 Toujours dans export class : D\'e9clarer appareils:any[] comme array de type \'ab\'a0any\'a0\'bb \
+	6 - Sous le constructeur, cr\'e9er la m\'e9thode ngOnInit pour r\'e9cup\'e9rer les infos de nomDuService : ngOnInit() \{ this.variables = this.nomDuService.variables; \}\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b \cf0 * Le routing :
+\b0  Cr\'e9er par exemple des single page application (SPA) : Applications rapides, lisses, 1 seul chargement de page au d\'e9but, comme une appli native. Le routing lit le contenu de l\'92URL pour afficher le ou les components requis.\
+ \'95 On d\'e9clare les routes dans 
+\b app.module.ts\
+ \'95 routerLink : 
+\b0 permet de naviguer dans l\'92application (remplace l\'92attribut href)\
+\
+}
