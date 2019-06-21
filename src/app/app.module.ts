@@ -12,12 +12,15 @@ import { AuthComponent } from './auth/auth.component';
 import { AppareilViewComponent } from './appareil-view/appareil-view.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
+import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 
 const appRoutes: Routes = [
   { path: 'appareils', component: AppareilViewComponent },
   { path: 'appareils/:id', component: SingleAppareilComponent},
   { path: 'auth', component: AuthComponent },
-  { path: '', component: AppareilViewComponent }
+  { path: '', component: AppareilViewComponent },
+  { path: 'not-found', component: FourOhFourComponent },
+  { path: '**', redirectTo: 'not-found' }
   // L'utilisation des 2 points avant un fragment de route déclare ce fragment comme étant un paramètre (tous les chemins de type appareils/* seront renvoyés vers SingleAppareilComponent)
   // Le path correspond au string qui viendra après le / dans l'url : sur le serveur local, le premier path ici correspond  donc à localhost:4200/appareils
   // Ensuite le component correspond au component que l'on veut afficher lorsque l'utilisateur navigue au path choisi
@@ -31,7 +34,8 @@ const appRoutes: Routes = [
     AppareilComponent,
     AuthComponent,
     AppareilViewComponent,
-    SingleAppareilComponent
+    SingleAppareilComponent,
+    FourOhFourComponent
   ],
   imports: [
     BrowserModule,
