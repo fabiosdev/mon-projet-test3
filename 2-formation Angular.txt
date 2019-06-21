@@ -100,4 +100,5 @@ Méthode d’utilisation :
 * Le routing : Créer par exemple des single page application (SPA) : Applications rapides, lisses, 1 seul chargement de page au début, comme une appli native. Le routing lit le contenu de l’URL pour afficher le ou les components requis.
  • On déclare les routes dans app.module.ts
  • routerLink : permet de naviguer dans l’application (remplace l’attribut href)
+ • Penser aux redirections 404
 
