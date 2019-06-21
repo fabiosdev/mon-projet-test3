@@ -100,5 +100,6 @@ Méthode d’utilisation :
 * Le routing : Créer par exemple des single page application (SPA) : Applications rapides, lisses, 1 seul chargement de page au début, comme une appli native. Le routing lit le contenu de l’URL pour afficher le ou les components requis.
  • On déclare les routes dans app.module.ts
  • routerLink : permet de naviguer dans l’application (remplace l’attribut href)
- • Penser aux redirections 404
+ • Penser aux redirections 404.
+ • Guard : exécuter du code avant qu'un utilisateur puisse accéder à une route ; par exemple, vous pouvez souhaiter vérifier son authentification ou son identité. Une guard est en effet un service qu'Angular exécutera au moment où l'utilisateur essaye de naviguer vers la route sélectionnée
 
