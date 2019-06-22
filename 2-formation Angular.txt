@@ -102,4 +102,5 @@ Méthode d’utilisation :
  • routerLink : permet de naviguer dans l’application (remplace l’attribut href)
  • Penser aux redirections 404.
  • Guard : exécuter du code avant qu'un utilisateur puisse accéder à une route ; par exemple, vous pouvez souhaiter vérifier son authentification ou son identité. Une guard est en effet un service qu'Angular exécutera au moment où l'utilisateur essaye de naviguer vers la route sélectionnée
+ • Observables : Très simplement, un Observable est un objet qui émet des informations auxquelles on souhaite réagir.  Ces informations peuvent venir d'un champ de texte dans lequel l'utilisateur rentre des données, ou de la progression d'un chargement de fichier, par exemple.  Elles peuvent également venir de la communication avec un serveur : le client HTTP
 
