@@ -108,3 +108,12 @@ Méthode d’utilisation :
  • La méthode template : on crée le formulaire dans le template et angular le traite
  • La méthode réactive : On crée le formulaire en typescript et dans le template, puis on fait la liaison manuellement
    NB : Dans la méthode template, l'objet formulaire est de type NgForm, dans la methoe réactive, il est de type FormGroup
+
+* Firebase : 
+ • Aller sur firebase.com (login by google count)
+ • Créer un nouveau projet
+ • Aller au tableau de bord / Database / Realtime Database / Mode test (read: true , write: true)
+ • Importer HttpClientModule dans app.module.ts (from '@angular/common/http';) / dans Imports[] )
+ • Importer le http client à l'endroit souhaité (import { HttpClient } from '@angular/common/http'; et dans le constructeur : constructor(private httpClient: HttpClient) { })
+
+

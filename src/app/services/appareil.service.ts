@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -77,7 +78,41 @@ export class AppareilService {
     this.emitAppareilSubject();
   }
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
+
+  saveAppareilsToServer() {
+    // la méthode  post() , qui permet de lancer un appel POST, prend comme premier argument l'URL visée, et comme deuxième argument le corps de l'appel, c'est-à-dire ce qu'il faut envoyer à l'URL ;
+    this.httpClient
+    // l'extension  .json  de l'URL est une spécificité Firebase, pour lui dire que vous lui envoyez des données au format JSON ;
+    // la méthode  post()  retourne un Observable — elle ne fait pas d'appel à elle toute seule.  C'est en y souscrivant que l'appel est lancé ;
+      .put('https://mon-projet-test3.firebaseio.com/appareils.json', this.appareils)
+      // dans la méthode  subscribe() , vous prévoyez le cas où tout fonctionne et le cas où le serveur vous renverrait une erreur.
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé !');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+  }
+  /*Comme pour  post()  et  put() , la méthode get() retourne un Observable, mais puisqu'ici, vous allez recevoir des données, 
+  TypeScript a besoin de savoir de quel type elles seront (l'objet retourné est d'office considéré comme étant un Object).  
+  Vous devez donc, dans ce cas précis, ajouter  <any[]>  pour dire que vous allez recevoir un array de type  any , et que donc 
+  TypeScript peut traiter cet objet comme un array : si vous ne le faites pas, TypeScript vous dira qu'un array ne peut pas être redéfini comme Object.*/
+  getAppareilsFromServer() {
+    this.httpClient
+      .get<any[]>('https://mon-projet-test3.firebaseio.com/appareils.json')
+      .subscribe(
+        (response) => {
+          this.appareils = response;
+          this.emitAppareilSubject();
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+  }
 }
 
   
