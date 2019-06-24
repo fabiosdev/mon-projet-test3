@@ -1,0 +1,15 @@
+<ul class="list-group">
+  <li class="listgroup-item" *ngFor="let user of users">
+    <h3>{{ user.firstname }} {{ user.lastname }}</h3>
+    <p>{{ user.email }}</p>
+    <p>Cette personne préfère le {{ user.drinkPreference }}</p>
+    <p *ngIf="user.hobbies && user.hobbies.length > 0">
+      Cette personne a des hobbies !
+      <span *ngFor="let hobby of user.hobbies">{{ hobby }} - </span>
+    </p>
+  </li>
+  <a routerLink="/new-user">Nouvel utilisateur</a>
+  <!-- Puisque ce routerlink se trouve à l'intérieur du router-outlet il faut ajouter un / au début de l'url pour naviguer vers localhost:4200/new-user
+       Autrement, ce lien aurait navigué vers localhost:4200/users/new-user-->
+</ul>
+<!-- Ici, on applique des directives ngfor et ngIf pour afficher la liste des utilisateurs et leurs hobbies, si ils en ont-->

@@ -107,3 +107,4 @@ Méthode d’utilisation :
 * Les formulaires 2 grandes méthodes en angular :
  • La méthode template : on crée le formulaire dans le template et angular le traite
  • La méthode réactive : On crée le formulaire en typescript et dans le template, puis on fait la liaison manuellement
+   NB : Dans la méthode template, l'objet formulaire est de type NgForm, dans la methoe réactive, il est de type FormGroup

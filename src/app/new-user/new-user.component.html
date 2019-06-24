@@ -1,0 +1,35 @@
+<div class="col-sm-8 col-sm-offset-2">
+  <!-- Sur la balise form on utilise le property-binding pour lier l'objet userForm à l'attribut formGroup du formulaire, créant la liaison pour Angular entre le template et le typescript
+       On a toujours la méthode onSubmitForm() liée à ngSubmit mais on n'a plus besoin de passer le formulaire comme argument puisque que l'on y a déja accès par l'objet userForm créé
+       Sur chaque input qui correspond à un control du formulaire on ajoute l'attribut formControlName ou l'on passe un string correspondant au nom du control dans l'objet ts-->
+  <form [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
+    <div class="form-group">
+      <label for="firstName">Prénom</label>
+      <input type="text" id="firstname" class="form-control" formControlName="firstname">
+    </div>
+    <div class="form-group">
+      <label for="lastName">Nom</label>
+      <input type="text" id="lastname" class="form-control" formControlName="lastname">
+    </div>
+    <div class="form-group">
+      <label for="email">Adresse Email</label>
+      <input type="text" id="email" class="form-control" formControlName="email">
+    </div>
+    <div class="form-group">
+      <label for="drinkPreference">Quelle boisson préférez-vous ?</label>
+      <select type="text" id="drinkPreference" class="form-control" formControlName="drinkPreference">
+        <option value="jus d\'orange">Jus d'orange</option>
+        <option value="jus de mangue">Jus de mangue</option>
+      </select>
+    </div>
+    <div formArrayName="hobbies">
+      <h3>Vos hobbies</h3>
+      <div class="form-group" *ngFor="let hobbyControl of getHobbies().controls; let i = index">
+        <input type="text" class="form-control" [formControlName]="i">
+      </div>
+      <button type="button" class="btn btn-success" (click)="onAddHobby()">Ajouter un hobby</button>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Soumettre</button>
+    <!-- Le bouton de type submit déclenche l'évènement ngSubmit déclenchant ainsi la méthode onSubmitForm() -->
+  </form>
+</div>
