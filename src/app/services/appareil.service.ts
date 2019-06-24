@@ -42,11 +42,13 @@ export class AppareilService {
       this.emitAppareilSubject();
     }
   }
-  switchOnOne(i: number){ //Allume un seul appareil en fonction de son index
+  //Allume un seul appareil en fonction de son index
+  switchOnOne(i: number){
     this.appareils[i].status = 'allumé';
     this.emitAppareilSubject();
   }
-  switchOffOne(i: number){ //Éteint un seul appareil en fonction de son index
+  //Éteint un seul appareil en fonction de son index
+  switchOffOne(i: number){
     this.appareils[i].status = 'éteint';
     this.emitAppareilSubject();
   }
@@ -58,6 +60,21 @@ export class AppareilService {
       }
     );
     return appareil;
+  }
+  // Cette méthode crée un objet du bon format et attribue le nom et le statut qui lui sont passés comme arguments.
+  // La ligne pour l'id prend l'id du dernier élément actuel de l'array et ajoute 1.
+  // Ensuite l'objet complété est ajouté à l'array et le Subject est déclenché pour tout garder à jour
+  addAppareil(name: string, status: string) {
+    const appareilObject = {
+      id: 0,
+      name: '',
+      status: ''
+    };
+    appareilObject.name = name;
+    appareilObject.status = status;
+    appareilObject.id = this.appareils[(this.appareils.length - 1)].id + 1;
+    this.appareils.push(appareilObject);
+    this.emitAppareilSubject();
   }
 
   constructor() { }
